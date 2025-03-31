@@ -161,44 +161,44 @@ function viewcartdetails(){
     }
 }
 
-function viewcartdetails() {
-    if(cartdata.length > 0) {
-        const tbody = document.querySelector('.carttabledata tbody');
-        tbody.innerHTML = "";
-        document.querySelector('.cartlistview').classList.add("active");
+// function viewcartdetails() {
+//     if(cartdata.length > 0) {
+//         const tbody = document.querySelector('.carttabledata tbody');
+//         tbody.innerHTML = "";
+//         document.querySelector('.cartlistview').classList.add("active");
 
-        let totalcartprice = 0;
-        let totalcartquantity = 0;
+//         let totalcartprice = 0;
+//         let totalcartquantity = 0;
 
-        cartdata.forEach((arr) => {
-            fetch(apiurl + "/" + arr.ID)
-            .then((response) => response.json())
-            .then((data) => {
-                totalcartprice += data.price * arr.Quantity;
-                totalcartquantity += arr.Quantity;
+//         cartdata.forEach((arr) => {
+//             fetch(apiurl + "/" + arr.ID)
+//             .then((response) => response.json())
+//             .then((data) => {
+//                 totalcartprice += data.price * arr.Quantity;
+//                 totalcartquantity += arr.Quantity;
 
-                let tablelist = `
-                <tr>
-                    <td>
-                        <div class="productname">
-                            <img src="${data.image}" alt="${data.title}" />
-                            <h5>${data.title}</h5>
-                        </div>
-                    </td>
-                    <td>$${data.price.toFixed(2)}</td>
-                    <td>${arr.Quantity}</td>
-                    <td>$${(data.price * arr.Quantity).toFixed(2)}</td>
-                </tr>
-                `;
+//                 let tablelist = `
+//                 <tr>
+//                     <td>
+//                         <div class="productname">
+//                             <img src="${data.image}" alt="${data.title}" />
+//                             <h5>${data.title}</h5>
+//                         </div>
+//                     </td>
+//                     <td>$${data.price.toFixed(2)}</td>
+//                     <td>${arr.Quantity}</td>
+//                     <td>$${(data.price * arr.Quantity).toFixed(2)}</td>
+//                 </tr>
+//                 `;
                 
-                tbody.insertAdjacentHTML('beforeend', tablelist);
+//                 tbody.insertAdjacentHTML('beforeend', tablelist);
 
-                document.getElementById('totalquantity').textContent = totalcartquantity;
-                document.getElementById('Totalnetprice').textContent = '$' + totalcartprice.toFixed(2);
-            });
-        });
-    }
-}
+//                 document.getElementById('totalquantity').textContent = totalcartquantity;
+//                 document.getElementById('Totalnetprice').textContent = '$' + totalcartprice.toFixed(2);
+//             });
+//         });
+//     }
+// }
 
 function closecartdetails(){
     cartlistview.classList.remove("active");
